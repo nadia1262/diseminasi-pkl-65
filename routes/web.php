@@ -80,7 +80,7 @@ Route::middleware(['web', 'auth', 'auth.session'])->group(function () {
         Route::get('charts', [ChartController::class, 'index'])->name('chart.index');
 
         // Protected Routes requiring 2FA
-        Route::middleware(['require.two.factor'])->group(function () {
+        Route::middleware([/* 'require.two.factor'*/])->group(function () {
             // Admin Routes
             Route::prefix('admin')->name('admin.')->group(function () {
                 // Settings Routes

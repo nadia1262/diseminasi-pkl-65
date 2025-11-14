@@ -22,29 +22,70 @@ const metodologiAssets = {
 <template>
     <Head title="Beranda - Diseminasi PKL 65 DI Yogyakarta" />
 
-    <section class="relative pt-20 pb-32 overflow-hidden bg-pkl-base-cream bg-opacity-30">
-        <div class="container mx-auto px-4 relative z-10">
-            <div class="grid md:grid-cols-2 gap-8 items-center">
-                <div class="text-center md:text-left">
-                    <h1 class="font-headline text-5xl md:text-7xl text-pkl-base-orange drop-shadow-sm">
-                        Mengupas Fenomena GIG Worker di DI Yogyakarta
+    <!-- Hero Section - Matching Figma design exactly -->
+    <section class="relative pt-12 pb-20 overflow-hidden bg-pkl-base-cream">
+        <div class="container mx-auto px-6 lg:px-12 xl:px-16 relative z-10">
+            <div class="grid lg:grid-cols-2 gap-16 items-center min-h-[600px]">
+                <!-- Left Content -->
+                <div class="text-left space-y-6">
+                    <h1 class="font-headline text-7xl lg:text-8xl xl:text-9xl text-pkl-base-orange leading-none tracking-tight">
+                        Praktik Kerja<br>Lapangan
                     </h1>
-                    <p class="font-sub text-xl md:text-2xl text-gray-700 mt-6">
-                        Hasil Praktik Kerja Lapangan ke-65 Politeknik Statistika STIS
+                    <h2 class="font-sub text-xl lg:text-2xl text-gray-800">
+                        Politeknik Statistika STIS T.A. 2025/2026
+                    </h2>
+                    <p class="font-sans text-base lg:text-lg text-gray-700 leading-relaxed max-w-xl pr-4">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praktik Kerja Lapangan Mahasiswa Tingkat III Politeknik Statistika STIS T.A.2026 diadakan di seluruh kabupaten/kota terpilih di Provinsi DI Yogyakarta dengan tema Riset Gig Worker dengan slogan "Lorem Ipsum Dolor Sit Amet".
                     </p>
                     <Link 
                         href="#hasil-penelitian" 
-                        class="inline-block mt-10 bg-pkl-base-orange text-white font-sub text-lg px-8 py-3 rounded-md shadow-lg hover:bg-opacity-90 transition-all"
+                        class="inline-flex items-center mt-8 bg-pkl-compliment-green text-white font-sub text-base px-7 py-3.5 rounded-lg shadow-lg hover:bg-opacity-90 transition-all"
                     >
-                        Lihat Hasil Penelitian
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                        </svg>
+                        Lihat Hasil Riset
                     </Link>
                 </div>
-                <div class="relative h-64 md:h-96">
-                    <img :src="heroAssets.gunung" alt="Lanskap Gunung" class="absolute bottom-0 left-0 w-full h-auto opacity-70 object-cover" />
-                    <img :src="heroAssets.prambanan" alt="Landmark Prambanan" class="absolute bottom-0 right-0 h-3/4 w-auto" />
-                    <img :src="heroAssets.tugu" alt="Landmark Tugu Yogya" class="absolute bottom-0 left-10 h-full w-auto" />
+
+                <!-- Right Content - Landmark Composition -->
+                <div class="relative h-[500px] lg:h-[600px]">
+                    <!-- Background ornament blur effect -->
+                    <div class="absolute top-0 right-0 w-[400px] h-[400px] bg-gradient-to-br from-pkl-base-orange/20 to-pkl-compliment-yellow/30 rounded-full blur-3xl"></div>
+                    
+                    <!-- Landmark composition matching Figma -->
+                    <div class="relative w-full h-full flex items-end justify-center">
+                        <!-- Mountain landscape at bottom -->
+                        <img 
+                            :src="heroAssets.gunung" 
+                            alt="Lanskap Gunung" 
+                            class="absolute bottom-0 left-0 right-0 w-full h-32 object-cover object-bottom opacity-70" 
+                        />
+                        
+                        <!-- Tugu Yogya (left, tallest) -->
+                        <img 
+                            :src="heroAssets.tugu" 
+                            alt="Landmark Tugu Yogya" 
+                            class="absolute bottom-0 left-[15%] h-[85%] w-auto object-contain drop-shadow-2xl z-10" 
+                        />
+                        
+                        <!-- Prambanan (right, medium height) -->
+                        <img 
+                            :src="heroAssets.prambanan" 
+                            alt="Landmark Prambanan" 
+                            class="absolute bottom-0 right-[15%] h-[70%] w-auto object-contain opacity-90 drop-shadow-xl" 
+                        />
+                    </div>
                 </div>
             </div>
+        </div>
+        
+        <!-- Bottom wave decoration -->
+        <div class="absolute bottom-0 left-0 right-0 h-20 lg:h-32">
+            <svg class="w-full h-full" viewBox="0 0 1440 120" preserveAspectRatio="none">
+                <path d="M0,64 C240,96 480,32 720,64 C960,96 1200,32 1440,64 L1440,120 L0,120 Z" fill="#ffffff" fill-opacity="1"/>
+            </svg>
         </div>
     </section>
 

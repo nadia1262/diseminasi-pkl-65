@@ -1,110 +1,100 @@
 <script setup>
-import { ref } from 'vue';
 import { Link } from '@inertiajs/vue3';
+import { ref } from 'vue';
 
-// Path ke logo di folder /public
-const logoUrl = '/images/assets/LOGO-PKL_REV8.png';
+const mobileMenuOpen = ref(false);
 
-// State untuk menu mobile (hamburger)
-const isMobileMenuOpen = ref(false);
+const toggleMobileMenu = () => {
+    mobileMenuOpen.value = !mobileMenuOpen.value;
+};
 </script>
 
 <template>
-    <nav class="bg-pkl-base-cream shadow-md w-full sticky top-0 z-50">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-16">
-                
-                <div class="flex-shrink-0">
-                    <Link href="/">
-                        <img :src="logoUrl" alt="Logo PKL 65" class="h-12 w-auto" />
-                    </Link>
-                </div>
+    <nav class="bg-pkl-base-orange shadow-md sticky top-0 z-50">
+        <div class="container mx-auto px-6 lg:px-12 xl:px-16">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo and Title -->
+                <Link href="/" class="flex items-center space-x-3 group">
+                    <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-md group-hover:scale-105 transition-transform">
+                        <img src="/images/logo-stis.png" alt="Logo STIS" class="w-10 h-10 object-contain" />
+                    </div>
+                    <div class="hidden md:block">
+                        <h1 class="font-sub text-white text-lg font-semibold leading-tight">
+                            Website Hasil PKL 65
+                        </h1>
+                        <p class="font-sans text-pkl-base-cream text-xs">
+                            Tahun Ajaran 2025/2026
+                        </p>
+                    </div>
+                </Link>
 
-                <div class="hidden md:flex md:items-center md:space-x-8">
+                <!-- Desktop Navigation -->
+                <div class="hidden lg:flex items-center space-x-8">
                     <Link 
                         href="/" 
-                        class="font-sub text-gray-700 hover:text-pkl-base-orange transition-colors duration-200"
-                        :class="{ 'text-pkl-base-orange font-bold': $page.url === '/' }"
+                        class="font-sub text-white hover:text-pkl-compliment-yellow transition-colors text-base"
+                        :class="{ 'text-pkl-compliment-yellow font-semibold': $page.url === '/' }"
                     >
                         Beranda
                     </Link>
                     <Link 
-                        href="/hasil-diseminasi" 
-                        class="font-sub text-gray-700 hover:text-pkl-base-orange transition-colors duration-200"
-                        :class="{ 'text-pkl-base-orange font-bold': $page.url.startsWith('/hasil-diseminasi') }"
+                        href="/hasil-riset" 
+                        class="font-sub text-white hover:text-pkl-compliment-yellow transition-colors text-base"
+                        :class="{ 'text-pkl-compliment-yellow font-semibold': $page.url.startsWith('/hasil-riset') }"
                     >
-                        Hasil Penelitian
+                        Hasil Riset
                     </Link>
-                    <Link 
-                        href="/dokumen" 
-                        class="font-sub text-gray-700 hover:text-pkl-base-orange transition-colors duration-200"
-                        :class="{ 'text-pkl-base-orange font-bold': $page.url.startsWith('/dokumen') }"
-                    >
-                        Dokumen
-                    </Link>
-                </div>
-
-                <div class="hidden md:block">
                     <Link 
                         href="/login" 
-                        class="font-sub border border-pkl-base-orange text-pkl-base-orange px-4 py-2 rounded-md text-sm font-medium hover:bg-pkl-base-orange hover:text-white transition-colors duration-200"
+                        class="font-sub bg-white text-pkl-base-orange px-6 py-2.5 rounded-full hover:bg-pkl-base-cream transition-all shadow-md hover:shadow-lg"
                     >
-                        Login Admin
+                        Login
                     </Link>
                 </div>
 
-                <div class="md:hidden flex items-center">
-                    <button 
-                        @click="isMobileMenuOpen = !isMobileMenuOpen" 
-                        type="button" 
-                        class="inline-flex items-center justify-center p-2 rounded-md text-gray-600 hover:text-gray-800 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-pkl-base-orange" 
-                        aria-controls="mobile-menu" 
-                        :aria-expanded="isMobileMenuOpen.toString()"
+                <!-- Mobile Menu Button -->
+                <button 
+                    @click="toggleMobileMenu"
+                    class="lg:hidden text-white focus:outline-none"
+                    aria-label="Toggle menu"
+                >
+                    <svg v-if="!mobileMenuOpen" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                    <svg v-else class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Mobile Menu -->
+            <div 
+                v-show="mobileMenuOpen"
+                class="lg:hidden py-4 border-t border-white/20"
+            >
+                <div class="flex flex-col space-y-3">
+                    <Link 
+                        href="/" 
+                        @click="toggleMobileMenu"
+                        class="font-sub text-white hover:text-pkl-compliment-yellow transition-colors py-2 text-base"
+                        :class="{ 'text-pkl-compliment-yellow font-semibold': $page.url === '/' }"
                     >
-                        <span class="sr-only">Buka menu</span>
-                        <svg v-if="!isMobileMenuOpen" class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                        </svg>
-                        <svg v-else class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                        </svg>
-                    </button>
-                </div>
-
-            </div>
-        </div>
-
-        <div v-show="isMobileMenuOpen" class="md:hidden" id="mobile-menu">
-            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                <Link 
-                    href="/" 
-                    class="font-sub text-gray-700 hover:bg-gray-50 hover:text-pkl-base-orange block px-3 py-2 rounded-md text-base font-medium"
-                    :class="{ 'bg-gray-50 text-pkl-base-orange': $page.url === '/' }"
-                >
-                    Beranda
-                </Link>
-                <Link 
-                    href="/hasil-diseminasi" 
-                    class="font-sub text-gray-700 hover:bg-gray-50 hover:text-pkl-base-orange block px-3 py-2 rounded-md text-base font-medium"
-                    :class="{ 'bg-gray-50 text-pkl-base-orange': $page.url.startsWith('/hasil-diseminasi') }"
-                >
-                    Hasil Penelitian
-                </Link>
-                <Link 
-                    href="/dokumen" 
-                    class="font-sub text-gray-700 hover:bg-gray-50 hover:text-pkl-base-orange block px-3 py-2 rounded-md text-base font-medium"
-                    :class="{ 'bg-gray-50 text-pkl-base-orange': $page.url.startsWith('/dokumen') }"
-                >
-                    Dokumen
-                </Link>
-            </div>
-            <div class="pt-3 pb-3 border-t border-gray-200">
-                <div class="px-2">
+                        Beranda
+                    </Link>
+                    <Link 
+                        href="/hasil-riset" 
+                        @click="toggleMobileMenu"
+                        class="font-sub text-white hover:text-pkl-compliment-yellow transition-colors py-2 text-base"
+                        :class="{ 'text-pkl-compliment-yellow font-semibold': $page.url.startsWith('/hasil-riset') }"
+                    >
+                        Hasil Riset
+                    </Link>
                     <Link 
                         href="/login" 
-                        class="w-full text-center font-sub border border-pkl-base-orange text-pkl-base-orange px-4 py-2 rounded-md text-sm font-medium hover:bg-pkl-base-orange hover:text-white transition-colors duration-200"
+                        @click="toggleMobileMenu"
+                        class="font-sub bg-white text-pkl-base-orange px-6 py-2.5 rounded-full hover:bg-pkl-base-cream transition-all shadow-md text-center"
                     >
-                        Login Admin
+                        Login
                     </Link>
                 </div>
             </div>
